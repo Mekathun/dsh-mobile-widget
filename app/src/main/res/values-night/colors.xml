@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="widget_bg">#F21E1F21</color>
+    <color name="widget_border">#26FFFFFF</color>
+    <color name="logo_bg">#33FFFFFF</color>
+    <color name="logo_text">#9EC1FF</color>
+    <color name="text_primary">#F2F3F5</color>
+    <color name="text_secondary">#9AA0A6</color>
+    <color name="status_working">#5B98FF</color>
+    <color name="status_awaiting">#FFB63A</color>
+    <color name="status_done">#3ECC55</color>
+    <color name="status_offline">#8A8F98</color>
+</resources>

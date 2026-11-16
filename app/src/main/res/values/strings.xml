@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DSH 小组件</string>
+    <string name="widget_description">DeepSeek Harness 会话与余额</string>
+    <string name="size_2x1">DSH · 2×1</string>
+    <string name="size_3x1">DSH · 3×1</string>
+    <string name="size_4x1">DSH · 4×1</string>
+    <string name="size_2x2">DSH · 2×2</string>
+    <string name="size_3x2">DSH · 3×2</string>
+    <string name="size_4x2">DSH · 4×2</string>
+    <string name="logo">DSH</string>
+    <string name="status_working">工作中</string>
+    <string name="status_awaiting">待回答</string>
+    <string name="status_done">完成</string>
+    <string name="status_offline">未运行</string>
+    <string name="balance_unknown">¥ --</string>
+    <string name="today_prefix">今日</string>
+    <string name="remaining_prefix">余额</string>
+    <string name="session_unknown">还没有会话</string>
+    <string name="refresh">刷新</string>
+</resources>

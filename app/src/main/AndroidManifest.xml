@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Six preset sizes: 2x1, 3x1, 4x1, 2x2, 3x2, 4x2. Each declares its default
+         cell footprint; all of them stay resizable and pick a richer layout when
+         the launcher grows them. -->
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DshWidget">
+
+        <receiver
+            android:name=".Widget2x1"
+            android:exported="true"
+            android:label="@string/size_2x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="app.dsh.widget.ACTION_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_2x1_info" />
+        </receiver>
+
+        <receiver
+            android:name=".Widget3x1"
+            android:exported="true"
+            android:label="@string/size_3x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="app.dsh.widget.ACTION_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_3x1_info" />
+        </receiver>
+
+        <receiver
+            android:name=".Widget4x1"
+            android:exported="true"
+            android:label="@string/size_4x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="app.dsh.widget.ACTION_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_4x1_info" />
+        </receiver>
+
+        <receiver
+            android:name=".Widget2x2"
+            android:exported="true"
+            android:label="@string/size_2x2">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="app.dsh.widget.ACTION_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_2x2_info" />
+        </receiver>
+
+        <receiver
+            android:name=".Widget3x2"
+            android:exported="true"
+            android:label="@string/size_3x2">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="app.dsh.widget.ACTION_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_3x2_info" />
+        </receiver>
+
+        <receiver
+            android:name=".Widget4x2"
+            android:exported="true"
+            android:label="@string/size_4x2">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="app.dsh.widget.ACTION_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_4x2_info" />
+        </receiver>
+    </application>
+</manifest>
