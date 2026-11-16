@@ -18,4 +18,6 @@
     <string name="remaining_prefix">余额</string>
     <string name="session_unknown">还没有会话</string>
     <string name="refresh">刷新</string>
+    <string name="error_placeholder">⚠ 小组件加载失败</string>
+    <string name="error_hint">点开「DSH 小组件」查看详情</string>
 </resources>

@@ -13,6 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DshWidget">
 
+        <!-- Diagnostics screen: starting the app also lifts MIUI's "never launched"
+             background restriction, which otherwise breaks widget provider loads. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <receiver
             android:name=".Widget2x1"
             android:exported="true"

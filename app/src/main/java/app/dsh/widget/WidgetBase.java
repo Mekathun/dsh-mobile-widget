@@ -41,7 +41,7 @@ public abstract class WidgetBase extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager manager, int[] appWidgetIds) {
         StatusRepository.Snapshot cached = StatusRepository.cached(context);
         for (int id : appWidgetIds) {
-            apply(context, manager, id, cached);
+            applySafely(context, manager, id, cached);
         }
         RefreshWorker.schedulePeriodic(context);
         RefreshWorker.refreshNow(context);
@@ -50,7 +50,7 @@ public abstract class WidgetBase extends AppWidgetProvider {
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager manager,
                                           int appWidgetId, Bundle newOptions) {
-        apply(context, manager, appWidgetId, StatusRepository.cached(context));
+        applySafely(context, manager, appWidgetId, StatusRepository.cached(context));
         RefreshWorker.refreshNow(context);
     }
 
@@ -80,7 +80,7 @@ public abstract class WidgetBase extends AppWidgetProvider {
                 continue;
             }
             for (int id : ids) {
-                apply(context, manager, id, effective);
+                applySafely(context, manager, id, effective);
             }
         }
     }
@@ -105,6 +105,31 @@ public abstract class WidgetBase extends AppWidgetProvider {
             return R.layout.widget_4x2;
         }
         return columns == 3 ? R.layout.widget_3x2 : R.layout.widget_2x2;
+    }
+
+    /** Render one instance, degrading to an on-widget error card on any failure. */
+    private static void applySafely(Context context, AppWidgetManager manager, int widgetId,
+                                    StatusRepository.Snapshot snapshot) {
+        try {
+            apply(context, manager, widgetId, snapshot);
+        } catch (Throwable failure) {
+            DebugLog.record(context, "render widget " + widgetId, failure);
+            try {
+                RemoteViews fallback = new RemoteViews(context.getPackageName(), R.layout.widget_error);
+                fallback.setTextViewText(R.id.errorText, "⚠ " + DebugLog.summary(String.valueOf(failure.getMessage())));
+                fallback.setTextViewText(R.id.errorHint, "点开「DSH 小组件」查看详情");
+                Intent launch = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
+                if (launch != null) {
+                    launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    fallback.setOnClickPendingIntent(R.id.widgetRoot,
+                            PendingIntent.getActivity(context, 0, launch,
+                                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
+                }
+                manager.updateAppWidget(widgetId, fallback);
+            } catch (Throwable nested) {
+                DebugLog.record(context, "fallback render " + widgetId, nested);
+            }
+        }
     }
 
     /** Build and push one widget instance. */
